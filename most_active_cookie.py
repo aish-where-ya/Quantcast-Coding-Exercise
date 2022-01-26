@@ -33,13 +33,9 @@ class mostActiveCookie:
             frequency[self.cookies[i]] = frequency.get(self.cookies[i],0)+1
             max_frequency = max(max_frequency, frequency[self.cookies[i]])
         
-        print(frequency)
         for cookie, freq in frequency.items():
             if freq == max_frequency:
                 most_active_cookies.append(cookie)
-
-        print(most_active_cookies)
-
         return most_active_cookies
 
 
@@ -57,8 +53,6 @@ class mostActiveCookie:
             date = datetime.strptime(date,'%Y-%m-%d').date()
             firstIndex = self.get_bound(date,"upper")
             lastIndex = self.get_bound(date,"lower")
-        
-        print([firstIndex, lastIndex])    
         return self.get_most_active_cookie(firstIndex,lastIndex)
 
 if __name__ == '__main__':
@@ -66,9 +60,11 @@ if __name__ == '__main__':
     parser.add_argument("-d", "--date", help="date for most active cookie")
     args = parser.parse_args()
 
-    fileName = "tests/test1.csv"
+    fileName = "log-files/log-file1.csv"
     classObj = mostActiveCookie()
     if args.date:
-        classObj.main(fileName, args.date)
+        result = classObj.main(fileName, args.date)
+        print(result)
     else:
-        classObj.main(fileName)
+        result = classObj.main(fileName)
+        print(result)
