@@ -25,10 +25,12 @@ class runTests:
 
             classObj = mostActiveCookie()
             actual_output = classObj.main(file_name,date)
-            if set(expected_output) == set(actual_output):
+            try:
+                assert set(expected_output) == set(actual_output)
                 return "Passed"
-            
-            print(expected_output, actual_output)
+            except:
+                print("Expected output: ", expected_output)
+                print("Actual ouput",actual_output)
             return "Failed"
 
     def main(self):
